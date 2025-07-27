@@ -1,3 +1,6 @@
+### Modules
+* A module is a container for multiple resources that are used together. Modules can be used to create lightweight abstractions, so that you can describe your infrastructure in terms of its architecture, rather than directly in terms of physical objects.
+
 ### `feature/vpc` branch
 ```
 git checkout -b feature/vpc
