@@ -1,36 +1,69 @@
-#------------------------------------------------------------------------------
-# Networking
-#------------------------------------------------------------------------------
-output "vpc_id" {
-  value       = try(aws_vpc.main[0].id, null)
-  description = "VPC ID."
+output "fe_instances_private_key" {
+  description = "Private key for SSH access"
+  value       = tls_private_key.fe_keypair.private_key_openssh
+  sensitive   = true
+}
+# terraform output -raw fe_instances_private_key > fe-sshkey.pem
+# chmod 400 fe-sshkey.pem
+# curl -s http://169.254.169.254/latest/meta-data/public-ipv4
+
+output "frontend_public_instance_public_ip" {
+  description = "Public IP of the frontend instance"
+  value       = aws_instance.frontend_public_instance01.public_ip
 }
 
-output "private_subnet_ids" {
-  value       = try(aws_subnet.private.*.id, null)
-  description = "Subnet IDs of private subnets."
+output "frontend_public_instance_public_dns" {
+  description = "Public DNS of the frontend instance"
+  value       = aws_instance.frontend_public_instance01.public_dns
 }
 
-output "public_subnet_ids" {
-  value       = try(aws_subnet.public.*.id, null)
-  description = "Subnet IDs of public subnets."
+output "frontend_private_instance01_private_ip" {
+  description = "Private IP of the frontend private instance 01"
+  value       = aws_instance.frontend_private_instance01.private_ip
 }
 
-#------------------------------------------------------------------------------
-# Bastion Host
-#------------------------------------------------------------------------------
-
-output "bastion_public_dns" {
-  value       = try(aws_instance.bastion[0].public_dns, null)
-  description = "Public DNS name of bastion EC2 instance."
+output "frontend_private_instance02_private_ip" {
+  description = "Private IP of the frontend private instance 02"
+  value       = aws_instance.frontend_private_instance02.private_ip
 }
 
-output "bastion_public_ip" {
-  value       = try(aws_instance.bastion[0].public_ip, null)
-  description = "Public IP of bastion EC2 instance."
+output "frontend_private_instance03_private_ip" {
+  description = "Private IP of the frontend private instance 03"
+  value       = aws_instance.frontend_private_instance03.private_ip
 }
 
-output "bastion_private_ip" {
-  value       = try(aws_instance.bastion[0].private_ip, null)
-  description = "Private IP of bastion EC2 instance."
+#### Backend Outputs
+
+output "be_instances_private_key" {
+  description = "Private key for SSH access"
+  value       = tls_private_key.be_keypair.private_key_openssh
+  sensitive   = true
+}
+# terraform output -raw be_instances_private_key > be-sshkey.pem
+# chmod 400 be-sshkey.pem
+# curl -s http://169.254.169.254/latest/meta-data/public-ipv4
+
+output "backend_public_instance_public_ip" {
+  description = "Public IP of the backend instance"
+  value       = aws_instance.backend_public_instance01.public_ip
+}
+
+output "backend_public_instance_public_dns" {
+  description = "Public DNS of the backend instance"
+  value       = aws_instance.backend_public_instance01.public_dns
+}
+
+output "backend_private_instance01_private_ip" {
+  description = "Private IP of the backend private instance 01"
+  value       = aws_instance.backend_private_instance01.private_ip
+}
+
+output "backend_private_instance02_private_ip" {
+  description = "Private IP of the backend private instance 02"
+  value       = aws_instance.backend_private_instance02.private_ip
+}
+
+output "backend_private_instance03_private_ip" {
+  description = "Private IP of the backend private instance 03"
+  value       = aws_instance.backend_private_instance03.private_ip
 }

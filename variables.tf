@@ -1,89 +1,101 @@
-#------------------------------------------------------------------------------
-# Common
-#------------------------------------------------------------------------------
-variable "friendly_name_prefix" {
-  type        = string
-  description = "Friendly name prefix used for tagging and naming AWS resources."
+variable "region" {
+  description = "The region where the resources are created."
+  default     = "ap-southeast-1"
 }
 
-variable "common_tags" {
-  type        = map(string)
-  description = "Map of common tags for all taggable AWS resources."
-  default     = {}
+#############################################################
+# Frontend VPC Variables
+#############################################################
+
+variable "frontend_vpc_address_space" {
+  description = "The CIDR block for the frontend VPC."
+  default     = "10.0.0.0/16"
 }
 
-#------------------------------------------------------------------------------
-# Networking
-#------------------------------------------------------------------------------
-variable "create_vpc" {
-  type        = bool
-  description = "Boolean to create a VPC."
-  default     = false
+variable "frontend_prefix" {
+  description = "The prefix for the frontend resources."
+  default     = "frontend"
 }
 
-variable "vpc_name" {
-  type        = string
-  description = "Name of VPC."
-  default     = "vpc"
+variable "frontend_environment" {
+  description = "The environment for the frontend resources."
+  default     = "dev"
 }
 
-variable "vpc_cidr" {
-  type        = string
-  description = "CIDR block for VPC."
-  default     = null
+variable "frontend_public_subnet_cidr" {
+  description = "The CIDR block for the frontend public subnets."
+  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 
-variable "private_subnet_cidrs" {
-  type        = list(string)
-  description = "List of private subnet CIDR ranges to create in VPC."
-  default     = []
+variable "frontend_private_subnet_cidr" {
+  description = "The CIDR block for the frontend private subnets."
+  default     = ["10.0.253.0/24", "10.0.254.0/24", "10.0.255.0/24"]
 }
 
-variable "public_subnet_cidrs" {
-  type        = list(string)
-  description = "List of public subnet CIDR ranges to create in VPC."
-  default     = []
+variable "fe_instance_type" {
+  description = "Specifies the AWS instance type."
+  default     = "t2.micro"
 }
 
-#------------------------------------------------------------------------------
-# Bastion, it's keypair and securitygroup
-#-------------------------------------------------------------------------
+#############################################################
+# Backend VPC Variables
+#############################################################
 
-variable "create_bastion" {
-  type        = bool
-  description = "Boolean to create a bastion EC2 instance. Only valid when `create_vpc` is `true`."
-  default     = false
+variable "backend_vpc_address_space" {
+  description = "The CIDR block for the backend VPC."
+  default     = "192.168.0.0/16"
 }
 
-variable "bastion_ec2_keypair_name" {
-  type        = string
-  description = "Existing SSH key pair to use for bastion EC2 instance."
-  default     = null
+variable "backend_prefix" {
+  description = "The prefix for the backend resources."
+  default     = "backend"
 }
 
-variable "bastion_cidr_allow_ingress_ssh" {
-  type        = list(string)
-  description = "List of source CIDR ranges to allow inbound to bastion on port 22 (SSH)."
-  default     = []
+variable "backend_environment" {
+  description = "The environment for the backend resources."
+  default     = "dev"
 }
 
-#------------------------------------------------------------------------------
-# EC2 SSH Key Pairs
-#------------------------------------------------------------------------------
-variable "create_ec2_ssh_keypair" {
-  type        = bool
-  description = "Boolean to create EC2 SSH key pair. This is separate from the `bastion_keypair` input variable."
-  default     = false
+variable "backend_public_subnet_cidr" {
+  description = "The CIDR block for the backend public subnets."
+  default     = ["192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24"]
 }
 
-variable "ec2_ssh_keypair_name" {
-  type        = string
-  description = "Name of EC2 SSH key pair."
-  default     = "ec2-keypair"
+variable "backend_private_subnet_cidr" {
+  description = "The CIDR block for the backend private subnets."
+  default     = ["192.168.253.0/24", "192.168.254.0/24", "192.168.255.0/24"]
 }
 
-variable "ec2_ssh_public_key" {
-  type        = string
-  description = "Public key material for EC2 SSH Key Pair."
-  default     = null
+variable "be_instance_type" {
+  description = "Specifies the AWS instance type."
+  default     = "t2.micro"
+}
+
+#############################################################
+# App Variables
+#############################################################
+
+variable "fe_placeholder" {
+  default     = "placedog.net"
+  description = "Image-as-a-service URL. Some other fun ones to try are fillmurray.com, placecage.com, placebeard.it, loremflickr.com, baconmockup.com, placeimg.com, placebear.com, placeskull.com, stevensegallery.com, placedog.net"
+}
+
+variable "be_placeholder" {
+  default     = "placebear.com"
+  description = "Image-as-a-service URL. Some other fun ones to try are fillmurray.com, placecage.com, placebeard.it, loremflickr.com, baconmockup.com, placeimg.com, placebear.com, placeskull.com, stevensegallery.com, placedog.net"
+}
+
+variable "placeholder_id" {
+  default     = "2"
+  description = "Image-as-a-service URL. Some other fun ones to try are fillmurray.com, placecage.com, placebeard.it, loremflickr.com, baconmockup.com, placeimg.com, placebear.com, placeskull.com, stevensegallery.com, placedog.net"
+}
+
+variable "width" {
+  default     = "600"
+  description = "Image width in pixels."
+}
+
+variable "height" {
+  default     = "400"
+  description = "Image height in pixels."
 }
