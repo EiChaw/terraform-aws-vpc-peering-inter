@@ -1,3 +1,7 @@
+/* Using aws_vpc_security_group_egress_rule and aws_vpc_security_group_ingress_rule resources is the current best practice. 
+Avoid using the aws_security_group_rule resource and the ingress and egress arguments of the aws_security_group resource for configuring in-line rules, 
+as they struggle with managing multiple CIDR blocks, and tags and descriptions due to the historical lack of unique IDs. */
+
 resource "aws_security_group" "fe_public_sg01" {
   name = "${var.frontend_prefix}-public-security-group01"
 
