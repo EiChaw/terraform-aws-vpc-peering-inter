@@ -1,0 +1,20 @@
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+terraform-state-backup.json
+crash.log
+crash.*.log
+
+# SSH keys and credentials
+*.pem
+*.key
+.env
+.env.*
+
+# macOS
+.DS_Store

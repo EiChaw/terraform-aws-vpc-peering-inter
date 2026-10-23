@@ -124,11 +124,6 @@ resource "aws_route_table_association" "frontend_private_subnet01_association" {
 resource "aws_route_table" "frontend_private_rtb02" {
   vpc_id = aws_vpc.frontend_vpc.id
 
-  #   route {
-  #     cidr_block = "0.0.0.0/0"
-  #     gateway_id = aws_internet_gateway.frontend_igw.id
-  #   }
-
   tags = {
     Name = "${var.frontend_prefix}-private-rtb02"
   }
@@ -141,11 +136,6 @@ resource "aws_route_table_association" "frontend_private_subnet02_association" {
 
 resource "aws_route_table" "frontend_private_rtb03" {
   vpc_id = aws_vpc.frontend_vpc.id
-
-  #   route {
-  #     cidr_block = "0.0.0.0/0"
-  #     gateway_id = aws_internet_gateway.frontend_igw.id
-  #   }
 
   tags = {
     Name = "${var.frontend_prefix}-private-rtb03"
