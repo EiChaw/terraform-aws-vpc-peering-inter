@@ -4,7 +4,7 @@ terraform {
   cloud {
     organization = "eec_hc_lab"
     workspaces {
-      name = "fe-network-ws"
+      name = "vcs-fe-network-ws"
     }
   }
 }
