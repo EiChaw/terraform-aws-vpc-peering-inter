@@ -4,7 +4,7 @@ terraform {
   cloud {
     organization = "eec_hc_lab"
     workspaces {
-      name = "be-compute-ws"
+      name = "vcs-be-compute-ws"
     }
   }
 }
