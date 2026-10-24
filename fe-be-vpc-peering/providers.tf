@@ -4,7 +4,7 @@ terraform {
   cloud {
     organization = "eec_hc_lab"
     workspaces {
-      name = "vpc-peering-ws"
+      name = "vcs-fe-be-vpc-peering-ws"
     }
   }
 }
