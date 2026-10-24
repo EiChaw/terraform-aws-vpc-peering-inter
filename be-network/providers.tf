@@ -4,11 +4,11 @@ terraform {
   cloud {
     organization = "eec_hc_lab"
     workspaces {
-      name = "be-network-ws"
+      name = "vcs-be-network-ws"
     }
   }
 }
 
 provider "aws" {
-  region = "ap-southeast-1"
+  region = "ap-northeast-1"
 }
