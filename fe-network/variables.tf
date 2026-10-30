@@ -4,7 +4,7 @@ variable "region" {
 }
 
 #############################################################
-# Frontend VPC Variables Creation
+# Frontend VPC Variables (fe-network)
 #############################################################
 
 variable "frontend_vpc_address_space" {
