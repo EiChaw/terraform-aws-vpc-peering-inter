@@ -4,7 +4,7 @@ terraform {
   cloud {
     organization = "eec_hc_lab"
     workspaces {
-      name = "vcs-fe-security-ws"
+      name = "opa-vcs-fe-security"
     }
   }
 }
