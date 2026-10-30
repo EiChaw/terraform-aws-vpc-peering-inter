@@ -6,8 +6,8 @@
 
 # 1. Backend Singapore -> Frontend Tokyo (Requester)
 resource "aws_vpc_peering_connection" "fevpc_peering_bevpc" {
-  vpc_id      = "vpc-0ff09d39ed013a57d" # BE Singapore
-  peer_vpc_id = "vpc-0d5b585feee6ad648" # FE Tokyo
+  vpc_id      = data.aws_vpc.backend_vpc.id #Singapore VPC
+  peer_vpc_id = data.aws_vpc.frontend_vpc.id #Tokyo VPC
   peer_region = "ap-northeast-1"
   auto_accept = false
 
