@@ -8,7 +8,7 @@
 resource "aws_vpc_peering_connection" "fevpc_peering_bevpc" {
   vpc_id      = data.aws_vpc.backend_vpc.id #Singapore VPC
   peer_vpc_id = data.aws_vpc.frontend_vpc.id #Tokyo VPC
-  peer_region = "us-east-1" # Virginia region (for OPA testing)
+  peer_region = "us-east-2" # Ohio region (for OPA testing)
   auto_accept = false
 
   tags = {
